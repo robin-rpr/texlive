@@ -1,3 +1,5 @@
+var Worker = require('web-worker');
+
 var TeXLive = function(opt_workerPath) {
   //var self=this;
   var chunksize= determineChunkSize();

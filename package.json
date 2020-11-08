@@ -1,0 +1,22 @@
+{
+  "name": "texlive",
+  "version": "1.0.0",
+  "description": "texlive.js  ==========",
+  "main": "bibtex-post.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robin-rpr/texlive.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robin-rpr/texlive/issues"
+  },
+  "homepage": "https://github.com/robin-rpr/texlive#readme",
+  "dependencies": {
+    "web-worker": "^1.0.0"
+  }
+}
