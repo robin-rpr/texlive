@@ -1,4 +1,5 @@
 var Worker = require('web-worker');
+var promise = require('promisejs/promise')
 
 var TeXLive = function(opt_workerPath) {
   //var self=this;
