@@ -1,0 +1,48 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      newversion:
+        description: 'Semantic Version Bump Type (major/minor/patch)'
+        required: true
+
+env:
+  node_version: 14
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    container: trzeci/emscripten
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Initialize Submodules
+        run: git submodule update --init
+      
+      - name: Make
+        run: make
+      
+      - name: Setup Git
+        run: |
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+      
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: ${{ env.node_version }}
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Bump Version
+        run: |
+          npm version ${{ github.event.inputs.newversion }} \
+          --no-git-tag-version
+          
+      - name: Publish to Npm Registry
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+      
