@@ -23,7 +23,7 @@ jobs:
         run: git submodule update --init
       
       - name: Make
-        run: make
+        run: make -j4
       
       - name: Setup Git
         run: |
